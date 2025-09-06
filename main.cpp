@@ -1,3 +1,4 @@
+#include <glad/glad.h>
 #include <SDL.h>
 #include <SDL_opengl.h>
 #include <imgui.h>
@@ -30,6 +31,12 @@ int main(int argc, char* argv[])
     SDL_GLContext gl_context = SDL_GL_CreateContext(window);
     SDL_GL_MakeCurrent(window, gl_context);
     SDL_GL_SetSwapInterval(1); // Enable vsync
+
+        if (!gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress)) {
+        std::cerr << "Failed to initialize OpenGL loader!" << std::endl;
+        return -1;
+    }
+
 
     // 初始化 ImGui
     IMGUI_CHECKVERSION();

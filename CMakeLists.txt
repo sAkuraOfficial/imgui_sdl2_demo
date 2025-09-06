@@ -22,6 +22,14 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(imgui)
 
+# 拉取 GLAD
+FetchContent_Declare(
+  glad
+  GIT_REPOSITORY https://github.com/Dav1dde/glad.git
+  GIT_TAG v0.1.36
+)
+FetchContent_MakeAvailable(glad)
+
 # 添加 ImGui 的 SDL2 和 OpenGL3 封装文件
 add_library(imgui_sdl_gl3
     ${imgui_SOURCE_DIR}/imgui.cpp
@@ -43,6 +51,7 @@ target_link_libraries(hello_sdl_imgui
     PRIVATE
         SDL2-static
         imgui_sdl_gl3
+        glad
 )
 
 target_include_directories(hello_sdl_imgui PRIVATE
